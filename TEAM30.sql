@@ -108,6 +108,8 @@ insert into nurse values(100127,01111200,01012);
 insert into nurse values(100128,01111200,01034);
 insert into nurse values(100129,01111200,01065);
 insert into nurse values(100130,01111200,01075);
+
+
 -- Laboratory table
 CREATE TABLE laboratory(
 	lab_id INT PRIMARY KEY NOT NULL,
@@ -119,6 +121,16 @@ CREATE TABLE laboratory(
     foreign key (patient_id) references patient(patient_id),
     foreign key (doctor_id) references doctor(doctor_id)
 );
+INSERT INTO laboratory VALUES (001, 05004, 01031, '2021-03-11 09-02-14', 500.00);
+INSERT INTO laboratory VALUES (002, 05001, 01042, '2017-01-01 08-02-11', 200.0);
+INSERT INTO laboratory VALUES (003, 05003, 01011, '2019-02-01 13-20-13', 150.00);
+INSERT INTO laboratory VALUES (004, 05006, 01022, '2020-02-01 14-15-12', 200.00);
+INSERT INTO laboratory VALUES (005, 05008, 01065, '2021-02-17 15-05-00', 1500.00);		       
+INSERT INTO laboratory VALUES (006, 05002, 01012, '2021-04-18 08-33-27', 2000.00);		       
+INSERT INTO laboratory VALUES (007, 05009, 01075, '2018-06-10 11-05-34', 150.00);     
+INSERT INTO laboratory VALUES (008, 05010, 01034, '2021-01-18 09-12-56', 400.00);
+INSERT INTO laboratory VALUES (009, 05005, 01045, '2020-05-14 10-05-15', 1000.00);			       
+INSERT INTO laboratory VALUES (0010, 05007, 0123, '2019-06-20 16-11-20', 400.00);
 
 
 -- Medication table
