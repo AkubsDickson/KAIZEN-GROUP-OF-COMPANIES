@@ -47,7 +47,7 @@ CREATE TABLE diagnosis(
 insert into diagnosis values('tuberculosis');
 insert into diagnosis values('malaria');
 insert into diagnosis values('asthma');
-insert into diagnosis values('stomachache');
+insert into diagnosis values('stomach ache');
 insert into diagnosis values('diarrhea');
 insert into diagnosis values('chlamydia');
 insert into diagnosis values('syphilis');
@@ -105,7 +105,7 @@ CREATE TABLE laboratory(
     foreign key (patient_id) references patient(patient_id),
     foreign key (doctor_id) references doctor(doctor_id)
 );
-
+INSERT INTO laboratory VALUES (001, 
 
 -- Medication table
 CREATE table medication(
