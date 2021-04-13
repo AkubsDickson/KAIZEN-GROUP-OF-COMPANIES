@@ -35,6 +35,17 @@ INSERT INTO person (first_name, middle_name, last_name, gender,age, phone_number
 ('Mary','Abiba','Mettle','F','75','01117914444','mos@gmail.com','01111203'),
 ('Khrys','Jeny','Kutin','F','22','01117770147','kjt@gmail.com','01111204'),
 ('Alfred','Kusi','Boateng','M','100','01117843531','alf@gmail.com',01111204),
+('Rebecca',null,'Ofori','F',34,'0207492013','rebmills@gmail.com',0111300),
+('Abena','Nana','Debrah','F',23,'0209595423','abenan@gmail.com',01111301),
+('Dylan','Kofi','Sylan','M',21,'0207492013','dylsyl@gmail.com',0111302),
+('Michaek','Yaw','Opana','M',21,'0207492013','micopa@gmail.com',0111303),
+('Efua','Mariam','Asante','F',23,'0542323234','efuaasa@gmail.com',0111304),
+('Kellen','Maame','Bonsu','F',24,'0207492013','kellmill@gmail.com',0111305),
+('Bishop','Sarpong','Mensah','M',21,'0207492013','bissar@gmail.com',0111306),
+('Jesse','Kwabenya','Kuma','M',34,'0207492013','jeskuma@gmail.com',0111307),
+('Abena',null,'Fianko','F',24,'05023123223','abefia@gmail.com',0111308),
+('Beyonce','Esi','White','F',64,'02045643423','beyesi@gmail.com',0111309),
+('Rihanna','Mabel','Boatend','F',56,'05445643423','rima@gmail.com',0111310),
 
 
  
