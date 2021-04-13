@@ -47,18 +47,18 @@ insert into doctor values(01075,0111100);
 -- Diagnosis table
 CREATE TABLE diagnosis(
 	diagnosis_id INT PRIMARY KEY NOT NULL,
-    diagnosis_name varchar (50)
+    diagnosis_name varchar (50) 
 );
-insert into diagnosis values('tuberculosis');
-insert into diagnosis values('malaria');
-insert into diagnosis values('asthma');
-insert into diagnosis values('stomachache');
-insert into diagnosis values('diarrhea');
-insert into diagnosis values('chlamydia');
-insert into diagnosis values('syphilis');
-insert into diagnosis values('allergies');
-insert into diagnosis values('avianinfluenza');
-insert into diagnosis values('arthritis');
+insert into diagnosis values(12211,'tuberculosis');
+insert into diagnosis values(19331'malaria');
+insert into diagnosis values(19219'asthma');
+insert into diagnosis values(12121'stomache ache');
+insert into diagnosis values(12111'diarrhea');
+insert into diagnosis values(11231'chlamydia');
+insert into diagnosis values(12311'syphilis');
+insert into diagnosis values(01112'allergies');
+insert into diagnosis values(14222'avianinfluenza');
+insert into diagnosis values(15433'arthritis');
 
 -- Patient table
 CREATE TABLE patient(
