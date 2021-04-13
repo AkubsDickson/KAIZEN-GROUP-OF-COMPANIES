@@ -148,6 +148,16 @@ CREATE TABLE inpatient(
     foreign key (doctor_id) references doctor(doctor_id),
     foreign key (lab_id) references laboratory(lab_id)
 );
+insert into inpatient values(05001,1001,2021-04-13,2021-04-21,null,01011,001);
+insert into inpatient values(05002,1001,2021-01-12,2021-01-21,null,01022,002);
+insert into inpatient values(05003,1001,2020-04-13,2021-04-21,2021-04-21,01011,001);
+insert into inpatient values(05004,1001,2021-01-11,2021-02-21,null,01031,003);
+insert into inpatient values(05005,1001,2021-04-13,2021-04-21,null,01042);
+insert into inpatient values(05006,1001,2021-04-13,2021-04-21,null,01065);
+insert into inpatient values(05007,1001,2021-04-13,2021-04-21,null,01075,002);
+insert into inpatient values(05008,1001,2021-04-13,2021-04-21,null,01034,010);
+insert into inpatient values(05009,1001,2021-04-13,2021-04-21,null,01023,005);
+insert into inpatient values(05010,1001,2021-04-13,2021-04-21,null,01012);
 
 -- Outpatient table
 CREATE table outpatient(
