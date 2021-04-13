@@ -18,13 +18,14 @@ INSERT INTO person (first_name, middle_name, last_name, gender,age, phone_number
  VALUES ('Chris','Martin','Kelvin','M','19','01123147789','aiudni@gmail.com',0111111),
  ('Chrisie','Martn','Kelsa','M','19','0113147789','aiudn@gmail.com',0111122),
  ('Mark','Watkins','Dan','M','01174592013',29040,'sks@gmail.com',0111123),
- ('Diel','Williams','Walter','M',NULL,null,null),
- ('Sarah','Taylor','Serop','F','01176348290','39','sjns@gmail.com',0111124),
- ('Katie','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',0111125),
+ ('Diel','Williams','Walter','M',NULL,null,01111124),
+ ('Sarah','Taylor','Serop','F','01176348290','39','sjns@gmail.com',0111125),
+ ('Katie','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',0111126),
  ('Kat','Atrong','Sean','F','0114577353','29','Wiggle@hotmail.com',0111127),
  ('Kok','Aong','Yaw','F','01145787353','239','wjsi@hotmail.com',0111128),
  ('Kok','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',0111129),
  ('Kok','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',01111200);
+
  
 -- Doctor table
 CREATE TABLE doctor (
@@ -35,9 +36,13 @@ CREATE TABLE doctor (
 insert into doctor values(01011,0111111);
 insert into doctor values(01022,0111122);
 insert into doctor values(01031,0111123);
-insert into doctor values(01042,0111122);
-insert into doctor values(01045,0111122);
-
+insert into doctor values(01042,0111124);
+insert into doctor values(01045,0111125);
+insert into doctor values(01012,0111116);
+insert into doctor values(01023,0111127);
+insert into doctor values(01034,0111128);
+insert into doctor values(01045,0111129);
+insert into doctor values(01045,0111100);
 
 -- Diagnosis table
 CREATE TABLE diagnosis(
@@ -47,7 +52,7 @@ CREATE TABLE diagnosis(
 insert into diagnosis values('tuberculosis');
 insert into diagnosis values('malaria');
 insert into diagnosis values('asthma');
-insert into diagnosis values('stomach ache');
+insert into diagnosis values('stomachache');
 insert into diagnosis values('diarrhea');
 insert into diagnosis values('chlamydia');
 insert into diagnosis values('syphilis');
@@ -105,7 +110,7 @@ CREATE TABLE laboratory(
     foreign key (patient_id) references patient(patient_id),
     foreign key (doctor_id) references doctor(doctor_id)
 );
-INSERT INTO laboratory VALUES (001, 
+
 
 -- Medication table
 CREATE table medication(
