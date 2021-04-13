@@ -41,8 +41,8 @@ insert into doctor values(01045,0111125);
 insert into doctor values(01012,0111116);
 insert into doctor values(01023,0111127);
 insert into doctor values(01034,0111128);
-insert into doctor values(01045,0111129);
-insert into doctor values(01045,0111100);
+insert into doctor values(01065,0111129);
+insert into doctor values(01075,0111100);
 
 -- Diagnosis table
 CREATE TABLE diagnosis(
