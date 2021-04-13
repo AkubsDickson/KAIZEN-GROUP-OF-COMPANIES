@@ -98,7 +98,16 @@ CREATE TABLE nurse(
     foreign key (person_id) references person(person_id),
     foreign key (doctor_id) references doctor(doctor_id)
 );
-
+insert into nurse values(100121,01111200,01011);
+insert into nurse values(100122,01111200,01022);
+insert into nurse values(100123,01111200,01045);
+insert into nurse values(100124,01111200,01023);
+insert into nurse values(100125,01111200,01022);
+insert into nurse values(100126,01111200,01042);
+insert into nurse values(100127,01111200,01012);
+insert into nurse values(100128,01111200,01034);
+insert into nurse values(100129,01111200,01065);
+insert into nurse values(100130,01111200,01075);
 -- Laboratory table
 CREATE TABLE laboratory(
 	lab_id INT PRIMARY KEY NOT NULL,
