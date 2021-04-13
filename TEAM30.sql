@@ -25,6 +25,11 @@ INSERT INTO person (first_name, middle_name, last_name, gender,age, phone_number
  ('Kok','Aong','Yaw','F','01145787353','239','wjsi@hotmail.com',0111128),
  ('Kok','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',0111129),
  ('Kok','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',01111200);
+ ('Koko','Armstrong','Sena','F','42','0245555890','Khl@hotmail.com',01111206);
+ ('Kodk','Armstrong','Sena','F','43','0246667876','wsmj@hotmail.com',01111207);
+ ('bok','Armstrong','Sena','F','35','0247546732','wpsi@hotmail.com',01111208);
+ ('Kole','Armstrong','Sena','F','30','0248453728','Lmaoi@hotmail.com',01111209);
+ ('Kane','Armstrong','Sena','F','53','0249564467','wpsi@hotmail.com',01111210);
  ('Mike','Kofi','Addo','M','88','02244424521','kay@gmail.com',01111201),
 ('Daryl','Osei','Darko','M','55','01114897177','dos@gmail.com',01111202),
 ('Mary','Abiba','Mettle','F','75','01117914444','mos@gmail.com','01111203'),
