@@ -25,6 +25,12 @@ INSERT INTO person (first_name, middle_name, last_name, gender,age, phone_number
  ('Kok','Aong','Yaw','F','01145787353','239','wjsi@hotmail.com',0111128),
  ('Kok','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',0111129),
  ('Kok','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',01111200);
+ ('Mike','Kofi','Addo','M','88','02244424521','kay@gmail.com',01111201),
+('Daryl','Osei','Darko','M','55','01114897177','dos@gmail.com',01111202),
+('Mary','Abiba','Mettle','F','75','01117914444','mos@gmail.com','01111203'),
+('Khrys','Jeny','Kutin','F','22','01117770147','kjt@gmail.com','01111204'),
+('Alfred','Kusi','Boateng','M','100','01117843531','alf@gmail.com',01111204),
+
 
  
 -- Doctor table
