@@ -248,6 +248,17 @@ CREATE TABLE ward(
 	ward_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     ward_name varchar(25)
 );
+insert into ward values('Children ward');
+insert into ward values('Infectious disease ward');
+insert into ward values('Adult ward');
+insert into ward values('Accident ward');
+insert into ward values('Emergency ward');
+insert into ward values('VIP ward');
+insert into ward values('Presidential ward');
+insert into ward values('Maternity ward');
+insert into ward values('ICU ward');
+insert into ward values('surgery ward');
+
 
 -- Room table
 CREATE TABLE room(
