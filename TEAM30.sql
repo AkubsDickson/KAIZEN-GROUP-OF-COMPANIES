@@ -232,7 +232,27 @@ CREATE table outpatient(
     foreign key (patient_id) references patient(patient_id),
     foreign key (doctor_id) references doctor(doctor_id)
 );
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05001
 
+,2011-10-3,01011);
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05002
+,2023-12-2,01022);
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05003
+,2012-01-4,01031);
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05004
+,2011-11-2,01042);
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05005
+,2000-04-5,01045);
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05006
+,2019-05-8,01012);
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05007
+,2011-12-11,01023);
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05008
+,2002-04-4,01034);
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05009
+,2002-2-5,01065);
+insert into outpatient (patient_id, date_of_discharge, doctor_id)values(05010
+,2021-9-9,01075);
 -- Blood Bank table
 CREATE TABLE bloodbank(
 	donor_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
@@ -242,6 +262,16 @@ CREATE TABLE bloodbank(
     foreign key (person_id) references person(person_id)
 );
 
+insert into bloodbank values('0-neg',01111111);
+insert into bloodbank values('0-pos',01111112);
+insert into bloodbank values('0-neg',01111113);
+insert into bloodbank values('0-pos',01111114);
+insert into bloodbank values('0-neg',01111115);
+insert into bloodbank values('0-neg',01111116);
+insert into bloodbank values('AB',01111117);
+insert into bloodbank values('AS',01111118);
+insert into bloodbank values('SS',01111119);
+insert into bloodbank values('O-neg',01111110);
 
 -- Ward table
 CREATE TABLE ward(
