@@ -134,6 +134,16 @@ CREATE TABLE bill(
     
     foreign key (patient_id) references patient(patient_id)
 );
+insert into bill values(01001, 200, 150, 4, 100, 05001);
+insert into bill values(01002, 100, 110, 3, 80, 05002);
+insert into bill values(01003, 90, 50, 5, 120, 05003);
+insert into bill values(01004, 60, 150, 1, 170, 05004);
+insert into bill values(01005, 70, 140, 2, 111, 05005);
+insert into bill values(01006, 220, 114, 6, 10, 05006);
+insert into bill values(01007, 250, 10, 9, 133, 05007);
+insert into bill values(01008, 210, 199, 10, 153, 05008);
+insert into bill values(01009, 161, 159, 7, 171, 05009);
+insert into bill values(010010, 187, 180, 8, 181, 05010);
 
 -- Inpatient table
 CREATE TABLE inpatient(
