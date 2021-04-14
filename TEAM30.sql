@@ -15,28 +15,28 @@ CREATE TABLE person (
     person_id INT PRIMARY KEY NOT NULL 
 );
 INSERT INTO person (first_name, middle_name, last_name, gender,age, phone_number,email,person_id)
- VALUES ('Chris','Martin','Kelvin','M','19','01123147789','aiudni@gmail.com',0111111),
- ('Chrisie','Martn','Kelsa','M','19','0113147789','aiudn@gmail.com',0111122),
- ('Mark','Watkins','Dan','M','01174592013',29040,'sks@gmail.com',0111123),
- ('Diel','Williams','Walter','M',NULL,null,01111124),
- ('Sarah','Taylor','Serop','F','01176348290','39','sjns@gmail.com',0111125),
- ('Katie','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',0111126),
- ('Kat','Atrong','Sean','F','0114577353','29','Wiggle@hotmail.com',0111127),
- ('Kok','Aong','Yaw','F','01145787353','239','wjsi@hotmail.com',0111128),
- ('Kok','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',0111129),
- ('Kok','Armstrong','Sena','F','01145787353','239','wjsi@hotmail.com',01111200);
- ('Koko','Armstrong','Sena','F','42','0245555890','Khl@hotmail.com',01111206);
- ('Kodk','Armstrong','Sena','F','43','0246667876','wsmj@hotmail.com',01111207);
- ('bok','Armstrong','Sena','F','35','0247546732','wpsi@hotmail.com',01111208);
- ('Kole','Armstrong','Sena','F','30','0248453728','Lmaoi@hotmail.com',01111209);
- ('Kane','Armstrong','Sena','F','53','0249564467','wpsi@hotmail.com',01111210);
- ('Mike','Kofi','Addo','M','88','02244424521','kay@gmail.com',01111201),
-('Daryl','Osei','Darko','M','55','01114897177','dos@gmail.com',01111202),
-('Mary','Abiba','Mettle','F','75','01117914444','mos@gmail.com','01111203'),
-('Khrys','Jeny','Kutin','F','22','01117770147','kjt@gmail.com','01111204'),
-('Alfred','Kusi','Boateng','M','100','01117843531','alf@gmail.com',01111204),
+ VALUES ('Chris','Martin','Kelvin','M',19,'01123147789','aiudni@gmail.com',0111111),
+ ('Chrisie','Martn','Kelsa','M',19,'0113147789','aiudn@gmail.com',0111122),
+ ('Mark','Watkins','Dan','M',29,'01174592013','sks@gmail.com',0111123),
+ ('Diel','Williams','Walter','M',37,NULL,null,0111124),
+ ('Sarah','Taylor','Serop','F',39,'01176348290','sjns@gmail.com',0111125),
+ ('Katie','Armstrong','Sena','F',29,'01145787353','wjsi@hotmail.com',0111126),
+ ('Kat','Atrong','Sean','F',29,'0114577353','Wiggle@hotmail.com',0111127),
+ ('Kok','Aong','Yaw','F',239,'01145787353','wjsi@hotmail.com',0111128),
+ ('Kok','Armstrong','Sena','F',23,'01145787353','wjsi@hotmail.com',0111129),
+ ('Kok','Armstrong','Sena','F',23,'01145787353','wjsi@hotmail.com',0111120),
+ ('Koko','Armstrong','Sena','F',42,'0245555890','Khl@hotmail.com',01111206),
+ ('Kodk','Armstrong','Sena','F',43,'0246667876','wsmj@hotmail.com',01111207),
+ ('bok','Armstrong','Sena','F',3,'0247546732','wpsi@hotmail.com',01111208),
+ ('Kole','Armstrong','Sena','F',30,'0248453728','Lmaoi@hotmail.com',01111209),
+ ('Kane','Armstrong','Sena','F',53,'0249564467','wpsi@hotmail.com',01111210),
+ ('Mike','Kofi','Addo','M',8,'02244424521','kay@gmail.com',01111201),
+('Daryl','Osei','Darko','M',55,'01114897177','dos@gmail.com',01111202),
+('Mary','Abiba','Mettle','F',75,'01117914444','mos@gmail.com','01111203'),
+('Khrys','Jeny','Kutin','F',2,'01117770147','kjt@gmail.com','01111287'),
+('Alfred','Kusi','Boateng','M',100,'01117843531','alf@gmail.com',01111204),
 ('Rebecca',null,'Ofori','F',34,'0207492013','rebmills@gmail.com',0111300),
-('Abena','Nana','Debrah','F',23,'0209595423','abenan@gmail.com',01111301),
+('Abena','Nana','Debrah','F',23,'0209595423','abenan@gmail.com',0111301),
 ('Dylan','Kofi','Sylan','M',21,'0207492013','dylsyl@gmail.com',0111302),
 ('Michaek','Yaw','Opana','M',21,'0207492013','micopa@gmail.com',0111303),
 ('Efua','Mariam','Asante','F',23,'0542323234','efuaasa@gmail.com',0111304),
@@ -45,7 +45,7 @@ INSERT INTO person (first_name, middle_name, last_name, gender,age, phone_number
 ('Jesse','Kwabenya','Kuma','M',34,'0207492013','jeskuma@gmail.com',0111307),
 ('Abena',null,'Fianko','F',24,'05023123223','abefia@gmail.com',0111308),
 ('Beyonce','Esi','White','F',64,'02045643423','beyesi@gmail.com',0111309),
-('Rihanna','Mabel','Boatend','F',56,'05445643423','rima@gmail.com',0111310),
+('Rihanna','Mabel','Boatend','F',56,'05445643423','rima@gmail.com',0111310);
 
 
  
@@ -60,11 +60,11 @@ insert into doctor values(01022,0111122);
 insert into doctor values(01031,0111123);
 insert into doctor values(01042,0111124);
 insert into doctor values(01045,0111125);
-insert into doctor values(01012,0111116);
+insert into doctor values(01012,0111126);
 insert into doctor values(01023,0111127);
 insert into doctor values(01034,0111128);
 insert into doctor values(01065,0111129);
-insert into doctor values(01075,0111100);
+insert into doctor values(01075,0111120);
 
 -- Diagnosis table
 CREATE TABLE diagnosis(
@@ -72,15 +72,15 @@ CREATE TABLE diagnosis(
     diagnosis_name varchar (50) 
 );
 insert into diagnosis values(12211,'tuberculosis');
-insert into diagnosis values(19331'malaria');
-insert into diagnosis values(19219'asthma');
-insert into diagnosis values(12121'stomache ache');
-insert into diagnosis values(12111'diarrhea');
-insert into diagnosis values(11231'chlamydia');
-insert into diagnosis values(12311'syphilis');
-insert into diagnosis values(01112'allergies');
-insert into diagnosis values(14222'avianinfluenza');
-insert into diagnosis values(15433'arthritis');
+insert into diagnosis values(19331,'malaria');
+insert into diagnosis values(19219,'asthma');
+insert into diagnosis values(12121,'stomache ache');
+insert into diagnosis values(12111,'diarrhea');
+insert into diagnosis values(11231,'chlamydia');
+insert into diagnosis values(12311,'syphilis');
+insert into diagnosis values(01112,'allergies');
+insert into diagnosis values(14222,'avianinfluenza');
+insert into diagnosis values(15433,'arthritis');
 
 -- Patient table
 CREATE TABLE patient(
@@ -278,17 +278,16 @@ CREATE TABLE ward(
 	ward_id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     ward_name varchar(25)
 );
-insert into ward values('Children ward');
-insert into ward values('Infectious disease ward');
-insert into ward values('Adult ward');
-insert into ward values('Accident ward');
-insert into ward values('Emergency ward');
-insert into ward values('VIP ward');
-insert into ward values('Presidential ward');
-insert into ward values('Maternity ward');
-insert into ward values('ICU ward');
-insert into ward values('surgery ward');
-
+insert into ward values(010000,'Children ward');
+insert into ward values(020000,'Infectious disease ward');
+insert into ward values(030000,'Adult ward');
+insert into ward values(040000,'Accident ward');
+insert into ward values(050000,'Emergency ward');
+insert into ward values(060000,'VIP ward');
+insert into ward values(070000,'Presidential ward');
+insert into ward values(080000,'Maternity ward');
+insert into ward values(090000,'ICU ward');
+insert into ward values(090001,'surgery ward');
 
 -- Room table
 CREATE TABLE room(
@@ -301,3 +300,13 @@ CREATE TABLE room(
     foreign key (ward_id) references ward(ward_id),
     foreign key (nurse_id) references nurse(nurse_id)
 );
+INSERT INTO room VALUES (1001,'2-bedroom',0,010000,100121);
+INSERT INTO room VALUES (1002,'4-bedroom',1,020000,100122);
+INSERT INTO room VALUES (1003,'2-bedroom',2,030000,100123);
+INSERT INTO room VALUES (1004,'2-bedroom',1,040000,100124);
+INSERT INTO room VALUES (1005,'4-bedroom',4,050000,100125);
+INSERT INTO room VALUES (1006,'3-bedroom',1,060000,100126);
+INSERT INTO room VALUES (1007,'1-bedroom',1,070000,100127);
+INSERT INTO room VALUES (1008,'2-bedroom',1,080000,100128);
+INSERT INTO room VALUES (1009,'3-bedroom',1,090000,100129);
+INSERT INTO room VALUES (1010,'1-bedroom',1,090001,100130);
