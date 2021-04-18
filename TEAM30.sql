@@ -47,15 +47,6 @@ CREATE TABLE patient(
 
 
 
-
--- Surgeon table
-CREATE TABLE surgeon (
-	doctor_id int NOT NULL,
-    specialty varchar(25) NOT NULL,
-    foreign key (doctor_id) references doctor(doctor_id)
-);
-
-
 -- Nurse table
 CREATE TABLE nurse(
 	nurse_id INT PRIMARY KEY NOT NULL,
