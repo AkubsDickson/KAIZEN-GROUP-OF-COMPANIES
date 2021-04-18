@@ -1,6 +1,6 @@
 --New file below
 
-drop database nyahomedical;
+drop database if exists nyahomedical;
 CREATE DATABASE nyahomedical;
 USE nyahomedical;
 
