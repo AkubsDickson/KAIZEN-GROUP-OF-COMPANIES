@@ -366,23 +366,14 @@ VALUES (05001, '2011-10-3', 01011, 'paid', 01004),
 (05010, '2021-9-9', 01075, 'paid', 010010);
 
 -- Covid_Test
- `appointment_id` INT NOT NULL,
-  `appointment_time` DATETIME,
-  `doctor_id` INT NULL,
-  `patient_id` INT NOT NULL,
-/*INSERT INTO Covid_Test (
-*/
+INSERT INTO Covid_Test (appointment_id,appointment_time,doctor_id,patient_id) VALUES
+(                                              ) ,
+
 
 -- Appointment Table
- `appointment_id` INT NOT NULL,
-  `appointment_time` DATETIME,
-  `doctor_id` INT NULL,
-  `patient_id` INT NOT NULL,
-  /*
   INSERT INTO Appointment (appointment_id, appointment_time, doctor_id, patient_id) 
-  VALUES (012, '2021-01-01 08-02-11', 01022, 
+  VALUES (012, '2021-01-01 08-02-11', 01022, ),
   
-  */
   
   -- Patient_Medication Table
   `patient_id` INT NOT NULL,
@@ -394,5 +385,27 @@ VALUES (05001, '2011-10-3', 01011, 'paid', 01004),
     
 -- Patient_Diagnosis Table
 
-/*
-*/
+
+--  Functionalities
+-- 1. 
+SELECT COUNT(*) FROM room
+WHERE room.room_status < 4;
+-- 2.
+SELECT last_name, diagnosis_name 
+ FROM person INNER JOIN doctor
+ON doctor.person_id = person.person_id INNER JOIN diagnosis ON patient.diagnosis_id = diagnosis.diagnosis_id;
+ 
+-- 3.
+SELECT first_name, last_name
+FROM person
+INNER JOIN patient
+ON person.person_id = patient.person_id
+INNER JOIN inpatient
+ON patient.patient_id = inpatient.patient_id
+WHERE bill_status = true;
+
+ -- 4.
+ SELECT COUNT(*) 
+FROM patient AS PatientWithOneOrMoreAppointments
+WHERE appointment_status IS true;
+
