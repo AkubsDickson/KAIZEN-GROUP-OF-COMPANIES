@@ -298,7 +298,13 @@ VALUES (9001, 'Fosamax', 'Alendronate'),
 (9002,'Glucophage', 'Metformin'),
 (9003,'Glucotrol', 'Glipizide'),
 (9004,'Hytrin', 'Terazosin'),
-(9005,'Altace', 'Ramipril');
+(9005,'Altace', 'Ramipril'),
+(9006, 'Amaryl', 'Glimepiride'),
+(9007, 'Celexa', 'Citalopram'),
+(9008, 'Diabeta', 'Glyburide'),
+(9009, 'Imitrex', 'Sumatriptan'),
+(9010, 'Mevacor', 'Iovastatin');
+
 
 -- Bill Table
 INSERT INTO Bill 
@@ -366,20 +372,55 @@ VALUES (05001, '2011-10-3', 01011, 'paid', 01004),
 (05010, '2021-9-9', 01075, 'paid', 010010);
 
 -- Covid_Test
-INSERT INTO Covid_Test (appointment_id,appointment_time,doctor_id,patient_id) VALUES
-(                                              ) ,
-
+INSERT INTO Covid_Test (test_id,has_tested,test_status,person_id,doctor_id)
+VALUES (05011, TRUE, 'negative', 0111300, 01011),
+(05012, TRUE, 'positive', 0111301, 01022),
+(05013, TRUE, 'negative', 0111302, 01031),
+(05014, TRUE, 'positive', 0111303, 01042),
+(05015, TRUE, 'positive', 0111304, 01045),
+(05016, TRUE, 'positive', 0111305, 01012),
+(05017, TRUE, 'negative', 0111306, 01023),
+(05018, TRUE, 'negative', 0111307, 01034),
+(05019, TRUE, 'negative', 0111308, 01065),
+(05020, TRUE, 'positive', 0111310, 01075);
 
 -- Appointment Table
-  INSERT INTO Appointment (appointment_id, appointment_time, doctor_id, patient_id) 
-  VALUES (012, '2021-01-01 08-02-11', 01022, ),
+INSERT INTO APPOINTMENT (appointment_id, appointment_time, doctor_id, patient_id)
+VALUES (070300,'2017-01-01 08-02-11', 01011, 05001),
+(070301,' 2017-02-03 08-33-49', 01022, 05002),
+(070302, '2017-02-13 12-34-56', 01031, 05003),
+(070303, '2017-01-27 09-23-57', 01042, 05004),
+(070304, '2017-01-28 11-55-33', 01045, 05005),
+(070305, '2019-02-27 12-12-34', 01012, 05006),
+(070306, '2021-04-25 11-32-54', 01023, 05007),
+(070307, '2020-02-17 13-41-17', 01034, 05008),
+(070308, '2020-02-17 13-41-17', 01065, 05009),
+(070309, '2020-02-17 13-41-17', 01075, 05010);
+
   
   
-  -- Patient_Diagnosis Table
+  -- Patient_Medication Table
+  INSERT INTO Patient_Medication
+Values (05001,9001),
+(05002,9002),
+(05003,9003),
+(05004,9004),
+(05005,9005),
+(05006,9006),
+(05007,9007),
+(05008,9008),
+(05009,9009),
+(05010,9010);
+
+
+
+    
+-- Patient_Diagnosis Table
+
 INSERT INTO patient_Diagnosis
 Values (05001,12211,01011),
 (05002,19331,01022),
-(05003,19219,10131),
+(05003,19219,01031),
 (05004,12121,01042),
 (05005,12111,01045),
 (05006,11231,01012),
@@ -387,14 +428,6 @@ Values (05001,12211,01011),
 (05008,01112,01034),
 (05009,14222,01065),
 (05010,15433,01075);
-
-
-/*
-*/
-    
--- Patient_Diagnosis Table
-
-
 --  Functionalities
 -- 1. 
 SELECT COUNT(*) FROM room
