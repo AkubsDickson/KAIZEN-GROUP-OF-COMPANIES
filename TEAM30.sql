@@ -435,7 +435,8 @@ WHERE room.room_status < 4;
 -- 2.
 SELECT last_name, diagnosis_name 
  FROM person INNER JOIN doctor
-ON doctor.person_id = person.person_id INNER JOIN diagnosis ON patient.diagnosis_id = diagnosis.diagnosis_id;
+ON doctor.person_id = person.person_id 
+INNER JOIN diagnosis ON patient.diagnosis_id = diagnosis.diagnosis_id;
  
 -- 3.
 SELECT first_name, last_name
@@ -451,3 +452,7 @@ WHERE bill_status = true;
 FROM patient AS PatientWithOneOrMoreAppointments
 WHERE appointment_status IS true;
 
+-- 5.
+
+
+-- 6.
