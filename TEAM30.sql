@@ -64,7 +64,7 @@ CREATE TABLE `Laboratory` (
   `patient_id` INT,
   `doctor_id` INT,
   `date_visited` DATETIME,
-  `amount` DECIMAL(5,2),
+  `amount` DECIMAL(8,2),
   
   PRIMARY KEY (`lab_id`),
   FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
@@ -232,7 +232,7 @@ INSERT INTO Person (first_name, middle_name, last_name, gender,age, phone_number
 INSERT INTO Doctor (doctor_id, specialty, person_id)
 VALUES (01011, 'chiropractor', 0111111), 
 (01022, 'pediatrician', 0111122),
-(10131, 'gynecologist', 0111123),
+(01031, 'gynecologist', 0111123),
 (01042, 'dermatologist', 0111124),
 (01045, 'psychologist', 0111125),
 (01012, 'optometrist', 0111126),
@@ -340,25 +340,24 @@ VALUES (1001,'2-bed',0,010000,100121),
 (1010,'1-bed',1,090001,100130);
 
 -- Inpatient Table
-INSERT INTO Inpatient 
-VALUES (05001,1001, '2003-04-13', NULL, 01011, 5001, 090000),
-(05002,1002, '2021-01-12', NULL, 01022,5002, 050000),
-(05003,1003, '2020-04-13','2021-04-21 11-30-14', 01011, 080000),
-(05004,1004, '2021-01-11', NULL, 01031, 070000),
-(05005,1005, '2021-04-13', NULL, 01042, 010000),
-(05006,1006, '2021-04-13', NULL, 01065, 030000),
-(05007,1007, '2021-04-13', NULL, 01075, 040000),
-(05008,1008, '2021-04-13', NULL, 01034, 090001),
-(05009,1009, '2021-04-13', NULL, 01023, 060000),
-(05010,1010, '2021-04-13', NULL, 01012, 020000);
-
+INSERT INTO Inpatient  ( patient_id, room_id, date_of_admission, time_of_death, doctor_id, lab_id ,ward_id )
+VALUES (05001,1001, '2003-04-13', NULL, 01011, 5001,010000),
+(05002,1002, '2021-01-12', NULL, 01022,5002,020000),
+(05003,1003, '2020-04-13','2021-04-21 11-30-14', 01011,5003,030000),
+(05004,1004, '2021-01-11', NULL, 01031, 5004,040000),
+(05005,1005, '2021-04-13', NULL, 01042, 5005,050000),
+(05006,1006, '2021-04-13', NULL, 01065, 5006,060000),
+(05007,1007, '2021-04-13', NULL, 01075, 5007,070000),
+(05008,1008, '2021-04-13', NULL, 01034, 5008,080000),
+(05009,1009, '2021-04-13', NULL, 01023, 5009,090000 ),
+(05010,1010, '2021-04-13', NULL, 01012, 50010,090001);
 
 -- Outpatient Table
 INSERT INTO Outpatient (patient_id, date_of_discharge, doctor_id, bill_status, bill_id)
 VALUES (05001, '2011-10-3', 01011, 'paid', 01004),
 (05002, '2021-12-2', 01022, 'paid', 01002),
 (05003, '2012-01-4', 01031, 'paid', 01001),
-(0500, '2011-11-2', 01042, 'paid', 01005),
+(05004, '2011-11-2', 01042, 'paid', 01005),
 (05005, '2000-04-5', 01045, 'waived', 01007),
 (05006, '2019-05-8', 01012, 'unpaid', 01006),
 (05007, '2011-12-11', 01023, 'waived', 01003),
