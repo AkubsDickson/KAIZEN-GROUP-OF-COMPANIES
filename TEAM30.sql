@@ -375,10 +375,19 @@ INSERT INTO Covid_Test (appointment_id,appointment_time,doctor_id,patient_id) VA
   VALUES (012, '2021-01-01 08-02-11', 01022, ),
   
   
-  -- Patient_Medication Table
-  `patient_id` INT NOT NULL,
-    `diagnosis_id` INT NOT NULL,
-    `doctor_id` INT NOT NULL,
+  -- Patient_Diagnosis Table
+INSERT INTO patient_Diagnosis
+Values (05001,12211,01011),
+(05002,19331,01022),
+(05003,19219,10131),
+(05004,12121,01042),
+(05005,12111,01045),
+(05006,11231,01012),
+(05007,12311,01023),
+(05008,01112,01034),
+(05009,14222,01065),
+(05010,15433,01075);
+
 
 /*
 */
