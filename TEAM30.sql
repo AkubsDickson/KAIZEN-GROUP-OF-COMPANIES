@@ -40,9 +40,9 @@ CREATE TABLE `Patient` (
   `doctor_id` INT,
   `person_id` INT,
   
+  
   PRIMARY KEY (`patient_id`),
   FOREIGN KEY (person_id) REFERENCES Person(person_id),
-  FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(Diagnosis_id),
   FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
 );
 
@@ -128,7 +128,6 @@ CREATE TABLE `Inpatient` (
   FOREIGN KEY (room_id) REFERENCES Room(room_id),
   FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
   FOREIGN KEY (lab_id) REFERENCES Laboratory(lab_id),
-  FOREIGN KEY (medication_id) REFERENCES Medication(medication_id),
   FOREIGN KEY (ward_id) REFERENCES Ward(ward_id)
 );
 
@@ -179,7 +178,7 @@ CREATE TABLE `Patient_Diagnosis` (
     
     FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
     FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
-    FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(patient_id)
+    FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id)
 );
 
 -- Patient_Medication Table
@@ -229,7 +228,6 @@ INSERT INTO Person (first_name, middle_name, last_name, gender,age, phone_number
 ('Beyonce','Esi','White','F',64,'02045643423','beyesi@gmail.com',0111309),
 ('Rihanna','Mabel','West','F',56,'05445643423','rima@gmail.com',0111310);
 
-
 -- Doctor Table
 INSERT INTO Doctor (doctor_id, specialty, person_id)
 VALUES (01011, 'chiropractor', 0111111), 
@@ -242,6 +240,32 @@ VALUES (01011, 'chiropractor', 0111111),
 (01034, 'dietician', 0111128),
 (01065, 'ophthalmologist', 0111129),
 (01075, 'radiologist', 0111120);
+
+-- Diagnosis Table
+INSERT INTO Diagnosis 
+VALUES (12211,'tuberculosis'),
+(19331,'malaria'), 
+(19219,'asthma'),
+(12121,'stomache ache'),
+(12111,'diarrhea'),
+(11231,'chlamydia'),
+(12311,'syphilis'),
+(01112,'allergies'),
+(14222,'avianinfluenza'),
+(15433,'arthritis');
+
+-- Patient Table
+INSERT INTO Patient (patient_id, person_id, doctor_id)
+VALUES (05001,0111300,01011),
+(05002,0111301,01022),
+(05003,0111302,01031),
+(05004,0111303,01042),
+(05005,0111304,01045),
+(05006,0111305,01012),
+(05007,0111306,01023),
+(05008,0111307,01034),
+(05009,0111308,01065),
+(05010,0111310,01075);
 
 -- Nurse Table
 INSERT INTO Nurse (nurse_id, nurse_type, person_id, doctor_id)
@@ -256,19 +280,17 @@ VALUES (100121, 'geriatric nurse', 0111300, 01011),
 (100129, 'intensive care nurse', 0111308, 01065),
 (100130, 'nursing assistant', 0111309, 01075);
 
-
--- Diagnosis Table
-INSERT INTO Diagnosis 
-VALUES (12211,'tuberculosis'),
-(19331,'malaria'), 
-(19219,'asthma'),
-(12121,'stomache ache'),
-(12111,'diarrhea'),
-(11231,'chlamydia'),
-(12311,'syphilis'),
-(01112,'allergies'),
-(14222,'avianinfluenza'),
-(15433,'arthritis');
+-- Laboratory
+INSERT INTO laboratory VALUES (5001, 05001, 01031, '2021-03-11 09-02-14', 500.00);
+INSERT INTO laboratory VALUES (5002, 05002, 01042, '2017-01-01 08-02-11', 200.0);
+INSERT INTO laboratory VALUES (5003, 05003, 01011, '2019-02-01 13-20-13', 150.00);
+INSERT INTO laboratory VALUES (5004, 05004, 01022, '2020-02-01 14-15-12', 200.00);
+INSERT INTO laboratory VALUES (5005, 05005, 01065, '2021-02-17 15-05-00', 1500.00);		       
+INSERT INTO laboratory VALUES (5006, 05006, 01012, '2021-04-18 08-33-27', 2000.00);		       
+INSERT INTO laboratory VALUES (5007, 05007, 01075, '2018-06-10 11-05-34', 150.00);     
+INSERT INTO laboratory VALUES (5008, 05008, 01034, '2021-01-18 09-12-56', 400.00);
+INSERT INTO laboratory VALUES (5009, 05009, 01045, '2020-05-14 10-05-15', 1000.00);			       
+INSERT INTO laboratory VALUES (50010, 05010,01023, '2019-06-20 16-11-20', 400.00);
 
 -- Medication Table
 INSERT INTO Medication 
@@ -317,20 +339,6 @@ VALUES (1001,'2-bed',0,010000,100121),
 (1009,'3-bed',1,090000,100129),
 (1010,'1-bed',1,090001,100130);
 
-
--- Patient Table
-INSERT INTO Patient (patient_id, person_id, doctor_id)
-VALUES (05001,0111300,01011),
-(05002,0111301,01022),
-(05003,0111302,01031),
-(05004,0111303,01042),
-(05005,0111304,01045),
-(05006,0111305,01012),
-(05007,0111306,01023),
-(05008,0111307,01034),
-(05009,0111308,01065),
-(05010,0111310,01075);
-
 -- Inpatient Table
 INSERT INTO Inpatient 
 VALUES (05001,1001, '2003-04-13', NULL, 01011, 5001, 090000),
@@ -364,7 +372,6 @@ VALUES (05001, '2011-10-3', 01011, 'paid', 01004),
   `doctor_id` INT NULL,
   `patient_id` INT NOT NULL,
 /*INSERT INTO Covid_Test (
-
 */
 
 -- Appointment Table
@@ -384,11 +391,9 @@ VALUES (05001, '2011-10-3', 01011, 'paid', 01004),
     `doctor_id` INT NOT NULL,
 
 /*
-
 */
     
 -- Patient_Diagnosis Table
 
 /*
-
 */
