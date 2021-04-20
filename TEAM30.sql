@@ -412,9 +412,6 @@ VALUES (05001,9001),
 (05008,9008),
 (05009,9009),
 (05010,9010);
-
-
-
     
 -- Patient_Diagnosis Table
 INSERT INTO patient_Diagnosis
@@ -437,3 +434,10 @@ FROM Ward
 INNER JOIN Room
 ON Ward.ward_id = Room.ward_id
 ORDER BY Room.room_status ASC;
+
+-- 3. Help the hospital keep track of tested patients and their corresponding details 
+SELECT Person.first_name, Person.last_name, Person.gender, Person.phone_number, Person.email
+FROM Person
+INNER JOIN Covid_Test
+ON Person.person_id = Covid_Test.person_id
+WHERE Covid_Test.has_tested = TRUE & Covid_Test.test_status = 'positive' AND Person.phone_number IS NOT NULL;
