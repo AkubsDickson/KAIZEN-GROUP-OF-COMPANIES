@@ -443,9 +443,12 @@ ON Person.person_id = Covid_Test.person_id
 WHERE Covid_Test.has_tested = TRUE AND Covid_Test.test_status = 'positive' AND Person.phone_number IS NOT NULL;
 
 --6. Doctors or patients to view their various appointments.
-select distinct  patient_id,doctor_id,appointment_time
-from Appointment
-where patient_id=05001; 
+SELECT Patient.patient_id, Doctor.doctor_id, Appointment.appointment_time
+FROM Patient
+INNER JOIN Appointment
+ON Patient.patient_id = Appointment.patient_id
+INNER JOIN Doctor
+ON Appointment.doctor_id = Doctor.doctor_id
 
 
 
