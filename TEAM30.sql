@@ -193,6 +193,33 @@ CREATE TABLE `Patient_Medication` (
 	FOREIGN KEY (medication_id) REFERENCES Medication(medication_id) ON DELETE CASCADE
 );
       
+-- Doctor_Medication Table
+CREATE TABLE `Doctor_Medication` (
+	`doctor_id` INT NOT NULL,
+    `medication_id` INT NOT NULL,
+    
+    FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
+	FOREIGN KEY (medication_id) REFERENCES Medication(medication_id) ON DELETE CASCADE
+);
+
+-- Doctor_Diagnosis Table
+CREATE TABLE `Doctor_Diagnosis` (
+	`doctor_id` INT NOT NULL,
+    `diagnosis_id` INT NOT NULL,
+    
+    FOREIGN KEY (doctor_id) REFERENCES Doctor (doctor_id) ON DELETE CASCADE,
+	FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis (diagnosis_id) ON DELETE CASCADE
+);
+
+-- Person_Covid_Test 
+CREATE TABLE `Person_Covid_Test` (
+	`person_id` INT NOT NULL,
+    `test_id` INT NOT NULL,
+    
+    FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
+	FOREIGN KEY (test_id) REFERENCES Covid_Test(test_id) ON DELETE CASCADE
+);
+
 -- Populating the Tables
 
 --
