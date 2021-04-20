@@ -1,7 +1,3 @@
--- Team 30 Database Schema
--- Version 2021
-
-
 DROP DATABASE IF EXISTS Nyaho_Medical;
 CREATE DATABASE Nyaho_Medical;
 USE Nyaho_Medical;
@@ -27,7 +23,7 @@ CREATE TABLE `Doctor` (
   `person_id` INT NOT NULL,
   
   PRIMARY KEY (`doctor_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE  CASCADE
+  FOREIGN KEY (person_id) REFERENCES Person(person_id)
 );
 
 -- Diagnosis Table
@@ -44,9 +40,10 @@ CREATE TABLE `Patient` (
   `doctor_id` INT,
   `person_id` INT,
   
+  
   PRIMARY KEY (`patient_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
+  FOREIGN KEY (person_id) REFERENCES Person(person_id),
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
 );
 
 -- Nurse Table
@@ -57,8 +54,8 @@ CREATE TABLE `Nurse` (
   `doctor_id` INT,
   
   PRIMARY KEY (`nurse_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
+  FOREIGN KEY (person_id) REFERENCES Person(person_id),
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
 );
 
 -- Laboratory Table
@@ -67,11 +64,11 @@ CREATE TABLE `Laboratory` (
   `patient_id` INT,
   `doctor_id` INT,
   `date_visited` DATETIME,
-  `amount` DECIMAL(8,2) DEFAULT 0,
+  `amount` DECIMAL(8,2),
   
   PRIMARY KEY (`lab_id`),
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
 );
 
 -- Medication Table
@@ -93,7 +90,7 @@ CREATE TABLE `Bill` (
   `patient_id` INT NOT NULL,
   
   PRIMARY KEY (`bill_id`),
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id)
 );
 
 -- Ward Table
@@ -113,8 +110,8 @@ CREATE TABLE `Room` (
   `nurse_id` INT,
   
   PRIMARY KEY (`room_id`),
-  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id) ON DELETE CASCADE,
-  FOREIGN KEY (nurse_id) REFERENCES Nurse(nurse_id) ON DELETE CASCADE
+  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id),
+  FOREIGN KEY (nurse_id) REFERENCES Nurse(nurse_id)
 );
 
 -- Inpatient Table
@@ -127,24 +124,24 @@ CREATE TABLE `Inpatient` (
   `lab_id` INT,
   `ward_id` INT,
   
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
-  FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE CASCADE,
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
-  FOREIGN KEY (lab_id) REFERENCES Laboratory(lab_id) ON DELETE CASCADE,
-  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id) ON DELETE CASCADE
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+  FOREIGN KEY (room_id) REFERENCES Room(room_id),
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
+  FOREIGN KEY (lab_id) REFERENCES Laboratory(lab_id),
+  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id)
 );
 
 -- Outpatient Table
 CREATE TABLE `Outpatient` (
   `patient_id` INT NOT NULL,
-  `date_of_discharge` DATE,
+  `date_of_discharge` DATETIME,
   `bill_status` ENUM('paid', 'unpaid', 'waived'),
   `doctor_id` INT,
   `bill_id` INT,
   
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
-  FOREIGN KEY (bill_id) REFERENCES Bill(bill_id) ON DELETE CASCADE
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
+  FOREIGN KEY (bill_id) REFERENCES Bill(bill_id)
 );
 
 -- Covid_Test Table
@@ -156,8 +153,8 @@ CREATE TABLE `Covid_Test` (
   `doctor_id` INT,
   
   PRIMARY KEY (`test_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
+  FOREIGN KEY (person_id) REFERENCES Person(person_id),
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
 );
 
 -- Appointment Table
@@ -168,8 +165,8 @@ CREATE TABLE `Appointment` (
   `patient_id` INT NOT NULL,
   
   PRIMARY KEY (`appointment_id`),
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
 );
 
 
@@ -179,9 +176,9 @@ CREATE TABLE `Patient_Diagnosis` (
 	`diagnosis_id` INT NOT NULL,
 	`doctor_id` INT NOT NULL,
 	
-	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
-	FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
-	FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id) ON DELETE CASCADE
+	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+	FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
+	FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id)
 );
 
 -- Patient_Medication Table
@@ -189,8 +186,8 @@ CREATE TABLE `Patient_Medication` (
 	`patient_id` INT NOT NULL,
 	`medication_id` INT NOT NULL,
     
-	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
-	FOREIGN KEY (medication_id) REFERENCES Medication(medication_id) ON DELETE CASCADE
+	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+	FOREIGN KEY (medication_id) REFERENCES Medication(medication_id)
 );
       
 
@@ -438,16 +435,11 @@ INNER JOIN Room
 ON Ward.ward_id = Room.ward_id
 ORDER BY Room.room_status ASC;
 
--- 2.
-SELECT Patient.patient_id, Person.first_name, Person.last_name
-FROM Patient
-JOIN Person ON Patient.person_id = Person.person_id
-JOIN Patient_Diagnosis
-ON Patient.patient_id = Patient_Diagnosis.patient_id
-JOIN Diagnosis
-ON Patient_Diagnosis.diagnosis_id = Diagnosis.diagnosis_id
-WHERE Diagnosis.diagnosis_name = 'malaria';
+-- 2. Holds specific medical records of a particular patient 
+select patient_id,doctor_id, date_of_admission, time_of_death, ward_id
 
+from Inpatient
+where patient_id = 05001;
 
 -- 3. Help the hospital keep track of tested patients and their corresponding details 
 SELECT Person.first_name, Person.last_name, Person.gender, Person.phone_number, Person.email
@@ -456,33 +448,10 @@ INNER JOIN Covid_Test
 ON Person.person_id = Covid_Test.person_id
 WHERE Covid_Test.has_tested = TRUE AND Covid_Test.test_status = 'positive' AND Person.phone_number IS NOT NULL;
 
--- 4. Display patient and diagnosis and medication
-SELECT Patient.patient_id, Diagnosis.diagnosis_name, Medication.brand_name, Medication.generic_name
-FROM Patient
-INNER JOIN Patient_Diagnosis
-ON Patient.patient_id = Patient_Diagnosis.patient_id
-INNER JOIN Diagnosis
-ON Patient_Diagnosis.diagnosis_id = Diagnosis.diagnosis_id
-INNER JOIN Patient_Medication
-ON Patient.patient_id = Patient_Medication.patient_id
-INNER JOIN Medication
-ON Patient_Medication.medication_id = Medication.medication_id;
-
--- 5. Enable nurses to check patients payment status
-SELECT Patient.patient_id, Outpatient.date_of_discharge, Outpatient.bill_status, Person.first_name, Person.last_name
-FROM Patient
-INNER JOIN Outpatient
-ON Patient.patient_id = Outpatient.patient_id
-INNER JOIN Person
-ON Person.person_id = Patient.person_id;
-
 --6. Doctors or patients to view their various appointments.
-SELECT Patient.patient_id, Doctor.doctor_id, Appointment.appointment_time
-FROM Patient
-INNER JOIN Appointment
-ON Patient.patient_id = Appointment.patient_id
-INNER JOIN Doctor
-ON Appointment.doctor_id = Doctor.doctor_id;
+select distinct  patient_id,doctor_id,appointment_time
+from Appointment
+where patient_id=05001; 
 
 
 
