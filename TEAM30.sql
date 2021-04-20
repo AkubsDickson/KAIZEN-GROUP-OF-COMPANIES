@@ -438,6 +438,17 @@ INNER JOIN Room
 ON Ward.ward_id = Room.ward_id
 ORDER BY Room.room_status ASC;
 
+-- 2.
+SELECT Patient.patient_id, Person.first_name, Person.last_name
+FROM Patient
+JOIN Person ON Patient.person_id = Person.person_id
+JOIN Patient_Diagnosis
+ON Patient.patient_id = Patient_Diagnosis.patient_id
+JOIN Diagnosis
+ON Patient_Diagnosis.diagnosis_id = Diagnosis.diagnosis_id
+WHERE Diagnosis.diagnosis_name = 'malaria';
+
+
 -- 3. Help the hospital keep track of tested patients and their corresponding details 
 SELECT Person.first_name, Person.last_name, Person.gender, Person.phone_number, Person.email
 FROM Person
