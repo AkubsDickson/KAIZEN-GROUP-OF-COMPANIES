@@ -1,3 +1,7 @@
+-- Team 30 Database Schema
+-- Version 2021
+
+
 DROP DATABASE IF EXISTS Nyaho_Medical;
 CREATE DATABASE Nyaho_Medical;
 USE Nyaho_Medical;
@@ -23,7 +27,7 @@ CREATE TABLE `Doctor` (
   `person_id` INT NOT NULL,
   
   PRIMARY KEY (`doctor_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id)
+  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE  CASCADE
 );
 
 -- Diagnosis Table
@@ -40,10 +44,9 @@ CREATE TABLE `Patient` (
   `doctor_id` INT,
   `person_id` INT,
   
-  
   PRIMARY KEY (`patient_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 -- Nurse Table
@@ -54,8 +57,8 @@ CREATE TABLE `Nurse` (
   `doctor_id` INT,
   
   PRIMARY KEY (`nurse_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 -- Laboratory Table
@@ -64,11 +67,11 @@ CREATE TABLE `Laboratory` (
   `patient_id` INT,
   `doctor_id` INT,
   `date_visited` DATETIME,
-  `amount` DECIMAL(8,2),
+  `amount` DECIMAL(8,2) DEFAULT 0,
   
   PRIMARY KEY (`lab_id`),
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 -- Medication Table
@@ -90,7 +93,7 @@ CREATE TABLE `Bill` (
   `patient_id` INT NOT NULL,
   
   PRIMARY KEY (`bill_id`),
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE
 );
 
 -- Ward Table
@@ -110,8 +113,8 @@ CREATE TABLE `Room` (
   `nurse_id` INT,
   
   PRIMARY KEY (`room_id`),
-  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id),
-  FOREIGN KEY (nurse_id) REFERENCES Nurse(nurse_id)
+  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id) ON DELETE CASCADE,
+  FOREIGN KEY (nurse_id) REFERENCES Nurse(nurse_id) ON DELETE CASCADE
 );
 
 -- Inpatient Table
@@ -124,24 +127,24 @@ CREATE TABLE `Inpatient` (
   `lab_id` INT,
   `ward_id` INT,
   
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  FOREIGN KEY (room_id) REFERENCES Room(room_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
-  FOREIGN KEY (lab_id) REFERENCES Laboratory(lab_id),
-  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+  FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
+  FOREIGN KEY (lab_id) REFERENCES Laboratory(lab_id) ON DELETE CASCADE,
+  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id) ON DELETE CASCADE
 );
 
 -- Outpatient Table
 CREATE TABLE `Outpatient` (
   `patient_id` INT NOT NULL,
-  `date_of_discharge` DATETIME,
+  `date_of_discharge` DATE,
   `bill_status` ENUM('paid', 'unpaid', 'waived'),
   `doctor_id` INT,
   `bill_id` INT,
   
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
-  FOREIGN KEY (bill_id) REFERENCES Bill(bill_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
+  FOREIGN KEY (bill_id) REFERENCES Bill(bill_id) ON DELETE CASCADE
 );
 
 -- Covid_Test Table
@@ -153,8 +156,8 @@ CREATE TABLE `Covid_Test` (
   `doctor_id` INT,
   
   PRIMARY KEY (`test_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 -- Appointment Table
@@ -165,8 +168,8 @@ CREATE TABLE `Appointment` (
   `patient_id` INT NOT NULL,
   
   PRIMARY KEY (`appointment_id`),
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 
@@ -176,9 +179,9 @@ CREATE TABLE `Patient_Diagnosis` (
 	`diagnosis_id` INT NOT NULL,
 	`doctor_id` INT NOT NULL,
 	
-	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-	FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
-	FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id)
+	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+	FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
+	FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id) ON DELETE CASCADE
 );
 
 -- Patient_Medication Table
@@ -186,15 +189,15 @@ CREATE TABLE `Patient_Medication` (
 	`patient_id` INT NOT NULL,
 	`medication_id` INT NOT NULL,
     
-	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-	FOREIGN KEY (medication_id) REFERENCES Medication(medication_id)
+	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+	FOREIGN KEY (medication_id) REFERENCES Medication(medication_id) ON DELETE CASCADE
 );
       
+-- Populating the Tables
 
-
-#Populating the Tables
-
--- Person Table
+--
+-- Dumping data for table Person
+--
 INSERT INTO Person (first_name, middle_name, last_name, gender,age, phone_number,email,person_id)
  VALUES ('Chris','Martin','Kelvin','M',19,'01123147789','aiudni@gmail.com',0111111),
  ('Chrisie','Martyn','Kelsa','F',21,'0113147789','aiudn@gmail.com',0111122),
@@ -228,7 +231,9 @@ INSERT INTO Person (first_name, middle_name, last_name, gender,age, phone_number
 ('Beyonce','Esi','White','F',64,'02045643423','beyesi@gmail.com',0111309),
 ('Rihanna','Mabel','West','F',56,'05445643423','rima@gmail.com',0111310);
 
--- Doctor Table
+--
+-- Dumping data for table Doctor
+--
 INSERT INTO Doctor (doctor_id, specialty, person_id)
 VALUES (01011, 'chiropractor', 0111111), 
 (01022, 'pediatrician', 0111122),
@@ -241,7 +246,9 @@ VALUES (01011, 'chiropractor', 0111111),
 (01065, 'ophthalmologist', 0111129),
 (01075, 'radiologist', 0111120);
 
--- Diagnosis Table
+--
+-- Dumping data for table Diagnosis
+--
 INSERT INTO Diagnosis 
 VALUES (12211,'tuberculosis'),
 (19331,'malaria'), 
@@ -254,7 +261,9 @@ VALUES (12211,'tuberculosis'),
 (14222,'avianinfluenza'),
 (15433,'arthritis');
 
--- Patient Table
+--
+-- Dumping data for table Patient
+--
 INSERT INTO Patient (patient_id, person_id, doctor_id)
 VALUES (05001,0111300,01011),
 (05002,0111301,01022),
@@ -267,7 +276,9 @@ VALUES (05001,0111300,01011),
 (05009,0111308,01065),
 (05010,0111310,01075);
 
--- Nurse Table
+--
+-- Dumping data for table Nurse
+--
 INSERT INTO Nurse (nurse_id, nurse_type, person_id, doctor_id)
 VALUES (100121, 'geriatric nurse', 0111300, 01011),
 (100122, 'ER nurse', 0111301, 01022),
@@ -280,7 +291,9 @@ VALUES (100121, 'geriatric nurse', 0111300, 01011),
 (100129, 'intensive care nurse', 0111308, 01065),
 (100130, 'nursing assistant', 0111309, 01075);
 
--- Laboratory
+--
+-- Dumping data for table Laboratory
+--
 INSERT INTO Laboratory 
 VALUES (5001, 05001, 01031, '2021-03-11 09-02-14', 500.00),
 (5002, 05002, 01042, '2017-01-01 08-02-11', 200.0),
@@ -293,7 +306,9 @@ VALUES (5001, 05001, 01031, '2021-03-11 09-02-14', 500.00),
 (5009, 05009, 01045, '2020-05-14 10-05-15', 1000.00),			       
 (50010, 05010,01023, '2019-06-20 16-11-20', 400.00);
 
--- Medication Table
+--
+-- Dumping data for table Medication
+--
 INSERT INTO Medication 
 VALUES (9001, 'Fosamax', 'Alendronate'),
 (9002,'Glucophage', 'Metformin'),
@@ -307,7 +322,9 @@ VALUES (9001, 'Fosamax', 'Alendronate'),
 (9010, 'Mevacor', 'Iovastatin');
 
 
--- Bill Table
+--
+-- Dumping data for table Bill
+--
 INSERT INTO Bill 
 VALUES (01001, 200, 150, 4, 100, 05001),
 (01002, 100, 110, 3, 80, 05002),
@@ -320,7 +337,9 @@ VALUES (01001, 200, 150, 4, 100, 05001),
 (01009, 161, 159, 7, 171, 05009),
 (010010, 187, 180, 8, 181, 05010);
 
--- Ward Table
+--
+-- Dumping data for table Ward
+--
 INSERT INTO Ward 
 VALUES (010000,'Pediatrics'),
 (020000,'Infectious Diseases'),
@@ -333,7 +352,9 @@ VALUES (010000,'Pediatrics'),
 (090000,'Intensive Care'),
 (090001,'Surgery');
 
--- Room Table
+--
+-- Dumping data for table Room
+--
 INSERT INTO Room 
 VALUES (1001,'2-bed',0,010000,100121),
 (1002,'4-bed',1,020000,100122),
@@ -346,7 +367,9 @@ VALUES (1001,'2-bed',0,010000,100121),
 (1009,'3-bed',1,090000,100129),
 (1010,'1-bed',1,090001,100130);
 
--- Inpatient Table
+--
+-- Dumping data for table Inpatient
+--
 INSERT INTO Inpatient  ( patient_id, room_id, date_of_admission, time_of_death, doctor_id, lab_id, ward_id)
 VALUES (05001,1001, '2003-04-13', NULL, 01011, 5001,010000),
 (05002,1002, '2021-01-12', NULL, 01022,5002,020000),
@@ -359,7 +382,9 @@ VALUES (05001,1001, '2003-04-13', NULL, 01011, 5001,010000),
 (05009,1009, '2021-04-13', NULL, 01023, 5009,090000 ),
 (05010,1010, '2021-04-13', NULL, 01012, 50010,090001);
 
--- Outpatient Table
+--
+-- Dumping data for table Outpatient
+--
 INSERT INTO Outpatient (patient_id, date_of_discharge, doctor_id, bill_status, bill_id)
 VALUES (05001, '2011-10-3', 01011, 'paid', 01004),
 (05002, '2021-12-2', 01022, 'paid', 01002),
@@ -372,7 +397,9 @@ VALUES (05001, '2011-10-3', 01011, 'paid', 01004),
 (05009, '2002-2-5', 01065, 'paid', 01008),
 (05010, '2021-9-9', 01075, 'paid', 010010);
 
--- Covid_Test
+--
+-- Dumping data for table Covid_Test
+--
 INSERT INTO Covid_Test (test_id,has_tested,test_status,person_id,doctor_id)
 VALUES (05011, TRUE, 'negative', 0111300, 01011),
 (05012, TRUE, 'positive', 0111301, 01022),
@@ -385,7 +412,9 @@ VALUES (05011, TRUE, 'negative', 0111300, 01011),
 (05019, TRUE, 'negative', 0111308, 01065),
 (05020, TRUE, 'positive', 0111310, 01075);
 
--- Appointment Table
+--
+-- Dumping data for table Appointment
+--
 INSERT INTO Appointment (appointment_id, appointment_time, doctor_id, patient_id)
 VALUES (070300,'2017-01-01 08-02-11', 01011, 05001),
 (070301,' 2017-02-03 08-33-49', 01022, 05002),
@@ -398,9 +427,9 @@ VALUES (070300,'2017-01-01 08-02-11', 01011, 05001),
 (070308, '2020-02-17 13-41-17', 01065, 05009),
 (070309, '2020-02-17 13-41-17', 01075, 05010);
 
-  
-  
-  -- Patient_Medication Table
+--
+-- Dumping data for table Patient_Medication
+--
 INSERT INTO Patient_Medication
 VALUES (05001,9001),
 (05002,9002),
@@ -413,7 +442,9 @@ VALUES (05001,9001),
 (05009,9009),
 (05010,9010);
     
--- Patient_Diagnosis Table
+--
+-- Dumping data for table Patient_Diagnosis
+--
 INSERT INTO Patient_Diagnosis
 VALUES (05001,12211,01011),
 (05002,19331,01022),
@@ -427,6 +458,7 @@ VALUES (05001,12211,01011),
 (05010,15433,01075);
 
 
+-- Queries
 --  Functionalities
 -- 1. Show empty rooms so nurses can assign rooms and corresponding ward to patients.
 SELECT Ward.ward_name, Room.room_id, Room.room_type, Room.room_status
@@ -435,11 +467,17 @@ INNER JOIN Room
 ON Ward.ward_id = Room.ward_id
 ORDER BY Room.room_status ASC;
 
--- 2. Holds specific medical records of a particular patient 
-select patient_id,doctor_id, date_of_admission, time_of_death, ward_id
 
-from Inpatient
-where patient_id = 05001;
+-- 2.
+SELECT Patient.patient_id, Person.first_name, Person.last_name
+FROM Patient
+JOIN Person ON Patient.person_id = Person.person_id
+JOIN Patient_Diagnosis
+ON Patient.patient_id = Patient_Diagnosis.patient_id
+JOIN Diagnosis
+ON Patient_Diagnosis.diagnosis_id = Diagnosis.diagnosis_id
+WHERE Diagnosis.diagnosis_name = 'malaria';
+
 
 -- 3. Help the hospital keep track of tested patients and their corresponding details 
 SELECT Person.first_name, Person.last_name, Person.gender, Person.phone_number, Person.email
@@ -448,10 +486,31 @@ INNER JOIN Covid_Test
 ON Person.person_id = Covid_Test.person_id
 WHERE Covid_Test.has_tested = TRUE AND Covid_Test.test_status = 'positive' AND Person.phone_number IS NOT NULL;
 
---6. Doctors or patients to view their various appointments.
-select distinct  patient_id,doctor_id,appointment_time
-from Appointment
-where patient_id=05001; 
+-- 4
+SELECT Patient.patient_id, Diagnosis.diagnosis_name, Medication.brand_name, Medication.generic_name
+FROM Patient
+INNER JOIN Patient_Diagnosis
+ON Patient.patient_id = Patient_Diagnosis.patient_id
+INNER JOIN Diagnosis
+ON Patient_Diagnosis.diagnosis_id = Diagnosis.diagnosis_id
+INNER JOIN Patient_Medication
+ON Patient.patient_id = Patient_Medication.patient_id
+INNER JOIN Medication
+ON Patient_Medication.medication_id = Medication.medication_id;
 
+-- 5
+SELECT Patient.patient_id, Outpatient.date_of_discharge, Outpatient.bill_status, Person.first_name, Person.last_name
+FROM Patient
+INNER JOIN Outpatient
+ON Patient.patient_id = Outpatient.patient_id
+INNER JOIN Person
+ON Person.person_id = Patient.person_id;
 
+-- 6
+SELECT Patient.patient_id, Doctor.doctor_id, Appointment.appointment_time
+FROM Patient
+INNER JOIN Appointment
+ON Patient.patient_id = Appointment.patient_id
+INNER JOIN Doctor
+ON Appointment.doctor_id = Doctor.doctor_id;
 
