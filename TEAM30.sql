@@ -442,6 +442,13 @@ INNER JOIN Covid_Test
 ON Person.person_id = Covid_Test.person_id
 WHERE Covid_Test.has_tested = TRUE AND Covid_Test.test_status = 'positive' AND Person.phone_number IS NOT NULL;
 
+-- 5. Enable nurses to check patients payment status
+SELECT Patient.patient_id, Outpatient.date_of_discharge, Outpatient.bill_status
+FROM patient
+INNER join Outpatient
+ON Patient.patient_id = Outpatient.patient_id
+WHERE  Outpatient.bill_status= 'unpaid'; 
+
 --6. Doctors or patients to view their various appointments.
 SELECT Patient.patient_id, Doctor.doctor_id, Appointment.appointment_time
 FROM Patient
