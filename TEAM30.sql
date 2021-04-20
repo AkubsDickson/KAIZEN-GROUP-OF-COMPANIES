@@ -173,18 +173,18 @@ CREATE TABLE `Appointment` (
 -- Patient_Diagnosis Table
 CREATE TABLE `Patient_Diagnosis` (
 	`patient_id` INT NOT NULL,
-    `diagnosis_id` INT NOT NULL,
-    `doctor_id` INT NOT NULL,
-    
-    FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-    FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
-    FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id)
+	`diagnosis_id` INT NOT NULL,
+	`doctor_id` INT NOT NULL,
+	
+	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
+	FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
+	FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id)
 );
 
 -- Patient_Medication Table
 CREATE TABLE `Patient_Medication` (
 	`patient_id` INT NOT NULL,
-    `medication_id` INT NOT NULL,
+	`medication_id` INT NOT NULL,
     
 	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
 	FOREIGN KEY (medication_id) REFERENCES Medication(medication_id)
@@ -281,16 +281,17 @@ VALUES (100121, 'geriatric nurse', 0111300, 01011),
 (100130, 'nursing assistant', 0111309, 01075);
 
 -- Laboratory
-INSERT INTO laboratory VALUES (5001, 05001, 01031, '2021-03-11 09-02-14', 500.00);
-INSERT INTO laboratory VALUES (5002, 05002, 01042, '2017-01-01 08-02-11', 200.0);
-INSERT INTO laboratory VALUES (5003, 05003, 01011, '2019-02-01 13-20-13', 150.00);
-INSERT INTO laboratory VALUES (5004, 05004, 01022, '2020-02-01 14-15-12', 200.00);
-INSERT INTO laboratory VALUES (5005, 05005, 01065, '2021-02-17 15-05-00', 1500.00);		       
-INSERT INTO laboratory VALUES (5006, 05006, 01012, '2021-04-18 08-33-27', 2000.00);		       
-INSERT INTO laboratory VALUES (5007, 05007, 01075, '2018-06-10 11-05-34', 150.00);     
-INSERT INTO laboratory VALUES (5008, 05008, 01034, '2021-01-18 09-12-56', 400.00);
-INSERT INTO laboratory VALUES (5009, 05009, 01045, '2020-05-14 10-05-15', 1000.00);			       
-INSERT INTO laboratory VALUES (50010, 05010,01023, '2019-06-20 16-11-20', 400.00);
+INSERT INTO laboratory 
+VALUES (5001, 05001, 01031, '2021-03-11 09-02-14', 500.00),
+(5002, 05002, 01042, '2017-01-01 08-02-11', 200.0),
+(5003, 05003, 01011, '2019-02-01 13-20-13', 150.00),
+(5004, 05004, 01022, '2020-02-01 14-15-12', 200.00),
+(5005, 05005, 01065, '2021-02-17 15-05-00', 1500.00),		       
+(5006, 05006, 01012, '2021-04-18 08-33-27', 2000.00),		       
+(5007, 05007, 01075, '2018-06-10 11-05-34', 150.00),    
+(5008, 05008, 01034, '2021-01-18 09-12-56', 400.00),
+(5009, 05009, 01045, '2020-05-14 10-05-15', 1000.00),			       
+(50010, 05010,01023, '2019-06-20 16-11-20', 400.00);
 
 -- Medication Table
 INSERT INTO Medication 
@@ -346,7 +347,7 @@ VALUES (1001,'2-bed',0,010000,100121),
 (1010,'1-bed',1,090001,100130);
 
 -- Inpatient Table
-INSERT INTO Inpatient  ( patient_id, room_id, date_of_admission, time_of_death, doctor_id, lab_id ,ward_id )
+INSERT INTO Inpatient  ( patient_id, room_id, date_of_admission, time_of_death, doctor_id, lab_id, ward_id)
 VALUES (05001,1001, '2003-04-13', NULL, 01011, 5001,010000),
 (05002,1002, '2021-01-12', NULL, 01022,5002,020000),
 (05003,1003, '2020-04-13','2021-04-21 11-30-14', 01011,5003,030000),
@@ -400,8 +401,8 @@ VALUES (070300,'2017-01-01 08-02-11', 01011, 05001),
   
   
   -- Patient_Medication Table
-  INSERT INTO Patient_Medication
-Values (05001,9001),
+INSERT INTO Patient_Medication
+VALUES (05001,9001),
 (05002,9002),
 (05003,9003),
 (05004,9004),
@@ -416,9 +417,8 @@ Values (05001,9001),
 
     
 -- Patient_Diagnosis Table
-
 INSERT INTO patient_Diagnosis
-Values (05001,12211,01011),
+VALUES (05001,12211,01011),
 (05002,19331,01022),
 (05003,19219,01031),
 (05004,12121,01042),
@@ -428,6 +428,8 @@ Values (05001,12211,01011),
 (05008,01112,01034),
 (05009,14222,01065),
 (05010,15433,01075);
+
+
 --  Functionalities
 -- 1. 
 SELECT COUNT(*) FROM room
