@@ -442,7 +442,10 @@ INNER JOIN Covid_Test
 ON Person.person_id = Covid_Test.person_id
 WHERE Covid_Test.has_tested = TRUE AND Covid_Test.test_status = 'positive' AND Person.phone_number IS NOT NULL;
 
---6. 
+--6. Doctors or patients to view their various appointments.
+select distinct  patient_id,doctor_id,appointment_time
+from Appointment
+where patient_id=05001; 
 
 
 
