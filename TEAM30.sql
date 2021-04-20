@@ -12,10 +12,10 @@ CREATE TABLE `Person` (
   `middle_name` VARCHAR(50),
   `last_name` VARCHAR(50) NOT NULL,
   `gender` ENUM('M', 'F'),
-  `age` INT,
-  `phone_number` varchar(12),
+  `age` INT ,
+  `phone_number` varchar(12) NOT NULL UNIQUE,
   `email` VARCHAR(25) CHECK (email LIKE '%@%') NOT NULL,
-  `person_id` INT NOT NULL,
+  `person_id` INT NOT NULL ,
   
   PRIMARY KEY (`person_id`)
 );
