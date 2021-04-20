@@ -134,7 +134,7 @@ CREATE TABLE `Inpatient` (
 -- Outpatient Table
 CREATE TABLE `Outpatient` (
   `patient_id` INT NOT NULL,
-  `date_of_discharge` DATETIME,
+  `date_of_discharge` DATE,
   `bill_status` ENUM('paid', 'unpaid', 'waived'),
   `doctor_id` INT,
   `bill_id` INT,
