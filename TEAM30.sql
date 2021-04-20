@@ -386,7 +386,7 @@ VALUES (05011, TRUE, 'negative', 0111300, 01011),
 (05020, TRUE, 'positive', 0111310, 01075);
 
 -- Appointment Table
-INSERT INTO APPOINTMENT (appointment_id, appointment_time, doctor_id, patient_id)
+INSERT INTO Appointment (appointment_id, appointment_time, doctor_id, patient_id)
 VALUES (070300,'2017-01-01 08-02-11', 01011, 05001),
 (070301,' 2017-02-03 08-33-49', 01022, 05002),
 (070302, '2017-02-13 12-34-56', 01031, 05003),
@@ -414,7 +414,7 @@ VALUES (05001,9001),
 (05010,9010);
     
 -- Patient_Diagnosis Table
-INSERT INTO patient_Diagnosis
+INSERT INTO Patient_Diagnosis
 VALUES (05001,12211,01011),
 (05002,19331,01022),
 (05003,19219,01031),
