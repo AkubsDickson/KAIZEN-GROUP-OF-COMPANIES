@@ -1,3 +1,7 @@
+-- Team 30 Database Schema
+-- Version 2021
+
+
 DROP DATABASE IF EXISTS Nyaho_Medical;
 CREATE DATABASE Nyaho_Medical;
 USE Nyaho_Medical;
@@ -23,7 +27,7 @@ CREATE TABLE `Doctor` (
   `person_id` INT NOT NULL,
   
   PRIMARY KEY (`doctor_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id)
+  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE  CASCADE
 );
 
 -- Diagnosis Table
@@ -40,10 +44,9 @@ CREATE TABLE `Patient` (
   `doctor_id` INT,
   `person_id` INT,
   
-  
   PRIMARY KEY (`patient_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 -- Nurse Table
@@ -54,8 +57,8 @@ CREATE TABLE `Nurse` (
   `doctor_id` INT,
   
   PRIMARY KEY (`nurse_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 -- Laboratory Table
@@ -64,11 +67,11 @@ CREATE TABLE `Laboratory` (
   `patient_id` INT,
   `doctor_id` INT,
   `date_visited` DATETIME,
-  `amount` DECIMAL(8,2),
+  `amount` DECIMAL(8,2) DEFAULT 0,
   
   PRIMARY KEY (`lab_id`),
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 -- Medication Table
@@ -90,7 +93,7 @@ CREATE TABLE `Bill` (
   `patient_id` INT NOT NULL,
   
   PRIMARY KEY (`bill_id`),
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE
 );
 
 -- Ward Table
@@ -110,8 +113,8 @@ CREATE TABLE `Room` (
   `nurse_id` INT,
   
   PRIMARY KEY (`room_id`),
-  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id),
-  FOREIGN KEY (nurse_id) REFERENCES Nurse(nurse_id)
+  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id) ON DELETE CASCADE,
+  FOREIGN KEY (nurse_id) REFERENCES Nurse(nurse_id) ON DELETE CASCADE
 );
 
 -- Inpatient Table
@@ -124,11 +127,11 @@ CREATE TABLE `Inpatient` (
   `lab_id` INT,
   `ward_id` INT,
   
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  FOREIGN KEY (room_id) REFERENCES Room(room_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
-  FOREIGN KEY (lab_id) REFERENCES Laboratory(lab_id),
-  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+  FOREIGN KEY (room_id) REFERENCES Room(room_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
+  FOREIGN KEY (lab_id) REFERENCES Laboratory(lab_id) ON DELETE CASCADE,
+  FOREIGN KEY (ward_id) REFERENCES Ward(ward_id) ON DELETE CASCADE
 );
 
 -- Outpatient Table
@@ -139,9 +142,9 @@ CREATE TABLE `Outpatient` (
   `doctor_id` INT,
   `bill_id` INT,
   
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
-  FOREIGN KEY (bill_id) REFERENCES Bill(bill_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
+  FOREIGN KEY (bill_id) REFERENCES Bill(bill_id) ON DELETE CASCADE
 );
 
 -- Covid_Test Table
@@ -153,8 +156,8 @@ CREATE TABLE `Covid_Test` (
   `doctor_id` INT,
   
   PRIMARY KEY (`test_id`),
-  FOREIGN KEY (person_id) REFERENCES Person(person_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (person_id) REFERENCES Person(person_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 -- Appointment Table
@@ -165,8 +168,8 @@ CREATE TABLE `Appointment` (
   `patient_id` INT NOT NULL,
   
   PRIMARY KEY (`appointment_id`),
-  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id)
+  FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+  FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE
 );
 
 
@@ -176,9 +179,9 @@ CREATE TABLE `Patient_Diagnosis` (
 	`diagnosis_id` INT NOT NULL,
 	`doctor_id` INT NOT NULL,
 	
-	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-	FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id),
-	FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id)
+	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+	FOREIGN KEY (doctor_id) REFERENCES Doctor(doctor_id) ON DELETE CASCADE,
+	FOREIGN KEY (diagnosis_id) REFERENCES Diagnosis(diagnosis_id) ON DELETE CASCADE
 );
 
 -- Patient_Medication Table
@@ -186,8 +189,8 @@ CREATE TABLE `Patient_Medication` (
 	`patient_id` INT NOT NULL,
 	`medication_id` INT NOT NULL,
     
-	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id),
-	FOREIGN KEY (medication_id) REFERENCES Medication(medication_id)
+	FOREIGN KEY (patient_id) REFERENCES Patient(patient_id) ON DELETE CASCADE,
+	FOREIGN KEY (medication_id) REFERENCES Medication(medication_id) ON DELETE CASCADE
 );
       
 
