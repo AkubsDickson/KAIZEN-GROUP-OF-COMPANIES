@@ -281,7 +281,7 @@ VALUES (100121, 'geriatric nurse', 0111300, 01011),
 (100130, 'nursing assistant', 0111309, 01075);
 
 -- Laboratory
-INSERT INTO laboratory 
+INSERT INTO Laboratory 
 VALUES (5001, 05001, 01031, '2021-03-11 09-02-14', 500.00),
 (5002, 05002, 01042, '2017-01-01 08-02-11', 200.0),
 (5003, 05003, 01011, '2019-02-01 13-20-13', 150.00),
