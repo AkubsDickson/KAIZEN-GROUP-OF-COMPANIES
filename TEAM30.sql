@@ -431,30 +431,9 @@ VALUES (05001,12211,01011),
 
 
 --  Functionalities
--- 1. 
-SELECT COUNT(*) FROM room
-WHERE room.room_status < 4;
--- 2.
-SELECT last_name, diagnosis_name 
- FROM person INNER JOIN doctor
-ON doctor.person_id = person.person_id 
-INNER JOIN diagnosis ON patient.diagnosis_id = diagnosis.diagnosis_id;
- 
--- 3.
-SELECT first_name, last_name
-FROM person
-INNER JOIN patient
-ON person.person_id = patient.person_id
-INNER JOIN inpatient
-ON patient.patient_id = inpatient.patient_id
-WHERE bill_status = true;
-
- -- 4.
- SELECT COUNT(*) 
-FROM patient AS PatientWithOneOrMoreAppointments
-WHERE appointment_status IS true;
-
--- 5.
-
-
--- 6.
+-- 1. Show empty rooms so nurses can assign rooms and corresponding ward to patients.
+SELECT Ward.ward_name, Room.room_id, Room.room_type, Room.room_status
+FROM Ward
+INNER JOIN Room
+ON Ward.ward_id = Room.ward_id
+ORDER BY Room.room_status ASC;
