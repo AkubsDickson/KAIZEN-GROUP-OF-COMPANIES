@@ -14,7 +14,7 @@ CREATE TABLE `Person` (
   `gender` ENUM('M', 'F'),
   `age` INT ,
   `phone_number` varchar(12) NOT NULL UNIQUE,
-  `email` VARCHAR(25) CHECK (email LIKE '%@%') NOT NULL,
+  `email` VARCHAR(25) UNIQUE CHECK (email LIKE '%@%') NOT NULL,
   `person_id` INT NOT NULL ,
   
   PRIMARY KEY (`person_id`)
