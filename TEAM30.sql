@@ -495,8 +495,9 @@ ON Ward.ward_id = Room.ward_id
 ORDER BY Room.room_status ASC;
 
 
--- 2.
-SELECT Patient.patient_id, Person.first_name, Person.last_name
+-- 2. Allows the nurse to display the patients with a specific ailment
+
+SELECT Patient.patient_id, Person.first_name, Person.last_name, Diagnosis.diagnosis_name
 FROM Patient
 JOIN Person ON Patient.person_id = Person.person_id
 JOIN Patient_Diagnosis
@@ -507,13 +508,13 @@ WHERE Diagnosis.diagnosis_name = 'malaria';
 
 
 -- 3. Help the hospital keep track of tested patients and their corresponding details 
-SELECT Person.first_name, Person.last_name, Person.gender, Person.phone_number, Person.email
+SELECT Person.first_name, Person.last_name, Person.gender, Person.phone_number, Person.email, Covid_Test.test_status
 FROM Person
 INNER JOIN Covid_Test
 ON Person.person_id = Covid_Test.person_id
 WHERE Covid_Test.has_tested = TRUE AND Covid_Test.test_status = 'positive' AND Person.phone_number IS NOT NULL;
 
--- 4
+-- 4 Displays the patient details such as diagnosis and medication
 SELECT Patient.patient_id, Diagnosis.diagnosis_name, Medication.brand_name, Medication.generic_name
 FROM Patient
 INNER JOIN Patient_Diagnosis
@@ -525,7 +526,7 @@ ON Patient.patient_id = Patient_Medication.patient_id
 INNER JOIN Medication
 ON Patient_Medication.medication_id = Medication.medication_id;
 
--- 5
+-- 5 Displays the payment_status of the patient before he is dicharged
 SELECT Patient.patient_id, Outpatient.date_of_discharge, Outpatient.bill_status, Person.first_name, Person.last_name
 FROM Patient
 INNER JOIN Outpatient
@@ -533,7 +534,7 @@ ON Patient.patient_id = Outpatient.patient_id
 INNER JOIN Person
 ON Person.person_id = Patient.person_id;
 
--- 6
+-- 6 Shows the patient's appointment time, and which doctor the appointment is with
 SELECT Patient.patient_id, Doctor.doctor_id, Appointment.appointment_time
 FROM Patient
 INNER JOIN Appointment
